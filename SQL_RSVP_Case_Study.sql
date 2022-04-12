@@ -1,13 +1,9 @@
-/* -------   READ ME FIRST -----
-- This is an amazing assignment, enjoyed working on it. 
-- We have put one query where both of our logics were similar; whereever we used different logics, we have put up two alternatives. 
-- We have added "Our Apporach" at the start of our solution. 
-- We have completed all 29 questions with comments and insights in inline comments.
-- We have ensured that commenting and query formatting best practices are followed. 
-- In some scenarios multiple values had exacts same ranks because of same avg_ratings, so we decided to use row number.
-- Wherever count is expected, we have added comments right in front of column name for ease of reading. 
-- Questions are separated using "Next Question Block" for ease of reading
-- Attempted all questions. 
+/* -------   READ ME FIRST -------
+- I have completed all 29 questions with comments and insights in inline comments.
+- I have ensured that commenting and query formatting best practices are followed. 
+- In some scenarios multiple values had exacts same ranks because of same avg_ratings, so I decided to use row number.
+- Wherever count is expected, I have added comments right in front of column name for ease of reading. 
+- Questions are separated using "Next Question Block" for ease of reading 
 */
 
 USE imdb;
@@ -25,7 +21,7 @@ USE imdb;
 
 -- Q1. Find the total number of rows in each table of the schema?
 
--- Our approach
+-- My approach
 -- Total six tables - movie, genre, director_mapping, role_mapping, names, ratings
 -- We need to count rows for each table
 
@@ -44,9 +40,8 @@ SELECT COUNT(*) FROM ratings; -- 7997 rows found
 
 -- Q2. Which columns in the movie table have null values?
 
--- Our Approach
--- We both worked on this and came up with two Different approaches.
--- We have mentioned both approaches as alternative 1 and 2
+-- My Approach
+-- I have mentioned two approaches as alternative 1 and 2
 -- Type your code below:
 
 -- Alternative Solution 1
@@ -136,7 +131,7 @@ So, now that you have understood the month-wise trend of movies, let’s take a 
 We know USA and India produces huge number of movies each year. Lets find the number of movies produced by USA or India for the last year.*/
   
 -- Q4. How many movies were produced in the USA or India in the year 2019??
--- Our Approach
+-- My Approach
 -- We need to add filter for country and year.
 
 SELECT
@@ -184,7 +179,7 @@ Combining both the movie and genres table can give more interesting insights. */
 
 -- Q6.Which genre had the highest number of movies produced overall?
 
--- Our Approach
+-- My Approach
 -- We shall perform join on movie table and genre table
 -- Then count movies for each genre
 
@@ -212,7 +207,7 @@ So, let’s find out the count of movies that belong to only one genre.*/
 
 -- Q7. How many movies belong to only one genre?
 
--- Our Approach
+-- My Approach
 -- We can query movie ids and count how many genres are registered with it
 -- We can get the movie ids with 1 genre_count and get the count
 -- As we know, there are movies which belongs to multiple genre type. i.e, - (Horror, Comedy) or (Scifi, action and comedy)
@@ -250,7 +245,7 @@ Now, let's find out the possible duration of RSVP Movies’ next project.*/
 -- Q8.What is the average duration of movies in each genre? 
 -- (Note: The same movie can belong to multiple genres.)
 
--- Our Approach
+-- My Approach
 -- We need to differentiate movies by genre and find their avg duration from movie table
 -- We need to join movie and genre on movie_id
 /* Output format:
@@ -299,7 +294,7 @@ Lets find where the movies of genre 'thriller' on the basis of number of movies.
 |drama			|	2312			|			2		  |
 +---------------+-------------------+---------------------+*/
 
--- Our Approach
+-- My Approach
 -- We'll first create a CTE to rank all the genres 
 -- Then we'll just extract the 'Thiller' using select query
 
@@ -342,7 +337,7 @@ To start with lets get the min and max values of different columns in the table*
 |		0		|			5		|	       177		  |	   2000	    		 |		0	       |	8			 |
 +---------------+-------------------+---------------------+----------------------+-----------------+-----------------+*/
 
--- Our Approach
+-- My Approach
 -- There are four columns in the table 'ratings'
 -- We need to find min average and max avg for three columns - Avg_Rating, total_votes, median_rating
 -- we are going to use min(), max() here
@@ -376,7 +371,7 @@ Now, let’s find out the top 10 movies based on average rating.*/
 +---------------+-------------------+---------------------+*/
 -- It's ok if RANK() or DENSE_RANK() is used too
 
--- Our Approach
+-- My Approach
 -- We need to find top 10 movies with highest avg_rating
 -- We are going to need title of the movie from movie table
 -- We need to join movie table and ratings on movie_id
@@ -417,7 +412,7 @@ Summarising the ratings table based on the movie counts by median rating can giv
 |	.			|		.			|
 +---------------+-------------------+ */
 
--- Our Approach
+-- My Approach
 -- We can run a select query in ratings table itself
 -- We can then count number of movies with respecting median_rating
 -- Order by is good to have
@@ -447,7 +442,7 @@ Now, let's find out the production house with which RSVP Movies can partner for 
 | The Archers	   |		1		   |			1	  	 |
 +------------------+-------------------+---------------------+*/
 
--- Our Approach
+-- My Approach
 -- We shall create a CTE and join movie, and ratings table
 -- We need three columns, name of production house, number of hit movies produced, and give them a rank
 -- We need to add a filter to count hit movies i.e., avg_rating >8
@@ -485,7 +480,7 @@ SELECT * FROM cte
 |	.			|		.			|
 +---------------+-------------------+ */
 
--- Our Approach
+-- My Approach
 -- We need to join 3 tables here. Movie, Genre, and ratings
 -- We need to get month, year and country from movie
 -- Group them by each genre
@@ -511,8 +506,6 @@ WHERE r.total_votes > 1000
 GROUP BY genre 
 ORDER BY genre;
    
-   -- Both of us had two Different approaches to this question when we compared codes. 
-   -- We have mentioned both approaches as alternative 1 and 2
    
    -- Alternative 2 
    SELECT 
@@ -554,13 +547,11 @@ order by 2;
 |	.			|		.			|			.		  |
 +---------------+-------------------+---------------------+*/
 
--- Our Approach 
+-- My Approach 
 -- We are going to use CTE here to create a temp table with id and title(starting with 'the') from movie table 
 -- Then join them with ratings and genre table 
 -- Then filter them with condition avg_rating >8
-
-   -- Both of us had two Different approaches to this question when we compared codes. 
-   -- We have mentioned both approaches as alternative 1 and 2
+-- I have mentioned two approaches as alternative 1 and 2
    
 -- Alternative 1
 WITH movie_title 
@@ -598,7 +589,7 @@ WHERE title REGEXP '^The' AND r.avg_rating > 8;
 
 -- Q16. Of the movies released between 1 April 2018 and 1 April 2019, how many were given a median rating of 8?
 
--- Our Approach
+-- My Approach
 -- We need to use 'between' here to filter our data
 -- We need to count no. of movies with median rating = 8
 -- We need to join movie table with ratings table
@@ -632,7 +623,7 @@ WHERE date_published BETWEEN '2018-04-01' AND '2019-04-01'
 
 -- Q17. Do German movies get more votes than Italian movies? 
 
--- Our Approach 
+-- My Approach 
 -- Here we have to filter the data using language german/italian
 -- Total_votes should come from ratings table
 -- So, we need to join Movie and ratings table again here.
@@ -697,7 +688,7 @@ FROM names;
 |	.			|		.			|
 |	.			|		.			|
 +---------------+-------------------+ */
--- Our Approach
+-- My Approach
 
 -- WITH top_three_genre
 -- sub query to fetch data and join the tables one by one
@@ -748,7 +739,7 @@ WHERE director_row_rank <= 3;
 |Christain Bale	|		10			|
 |	.			|		.			|
 +---------------+-------------------+ */
--- Our Approach 
+-- My Approach 
 -- We need to join tables movie, rating, role_mapping, and names
 -- First we need to find movies with median rating >= 8
 -- Then we need to get the actor name with associated movie counts
@@ -780,7 +771,7 @@ LIMIT 2;
 |	.				|		.			|			.		  |
 |	.				|		.			|			.		  |
 +-------------------+-------------------+---------------------+*/
--- Our Approach
+-- My Approach
 
 -- We need three columns production_company, total_votes, and vote_count
 -- Let's perform JOIN on movie and ratings table 
@@ -825,7 +816,7 @@ Let’s find who these actors could be.*/
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 +---------------+-------------------+---------------------+----------------------+-----------------+*/
--- Our Approach 
+-- My Approach 
 -- We need three important factors here, category = actor, country = 'India' and movie_count should be >= 5
 -- We need to perform join on movie, ratings, role_mapping, and names
 -- We also need to order and rank them as per the ratings
@@ -869,7 +860,7 @@ GROUP BY cte.actor_name;
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 +---------------+-------------------+---------------------+----------------------+-----------------+*/
--- Our approach 
+-- My approach 
 -- We need three important factors here, category = actress, country = 'India' and movie_count should be >= 3
 -- We need to perform join on movie, ratings, role_mapping, and names
 -- We also need to order and rank them as per the ratings and need only the top 5
@@ -989,7 +980,7 @@ ORDER BY g.genre;
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 +---------------+-------------------+---------------------+----------------------+-----------------+*/
--- Our Approach 
+-- My Approach 
 
 -- One CTE to get each genre and total count genre wise
 -- Second CTE to get genre, year realesed, movie name, ww_gross_incm by joining movie and genre table
@@ -1035,7 +1026,7 @@ SELECT DISTINCT * FROM cte2 WHERE movie_rank<=5;
 |	.				|		.			|			.		  |
 +-------------------+-------------------+---------------------+*/
 
--- Our Approach
+-- My Approach
 -- Multilingual is the important piece in the above question. It was created using POSITION(',' IN languages)>0 logic
 -- If there is a comma, that means the movie is of more than one language
 
@@ -1066,7 +1057,7 @@ LIMIT  2;
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 |		.		|			.		|	       .		  |	   .	    		 |		.	       |
 +---------------+-------------------+---------------------+----------------------+-----------------+*/
--- Our Approach 
+-- My Approach 
 -- Let's join name, movie, ratings, role_mapping tables.
 -- We need to filter the data under category 'actress' first.
 -- We can rank them using the avg_rating.
